@@ -67,3 +67,4 @@ Route::prefix('v1')->group(function () {
         });
     });
 });
+// Demo mode: seed data available via php artisan db:seed
