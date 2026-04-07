@@ -1,0 +1,45 @@
+{
+  "info": {
+    "name": "laravel-rest-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Laravel REST API with JWT auth, RBAC, CRUD resources"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:8000/api/v1"},
+    {"key": "token", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {"name": "Register", "request": {"method": "POST", "url": "{{baseUrl}}/auth/register", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\": \"Sarah Chen\", \"email\": \"admin@demo.com\", \"password\": \"demo123\", \"password_confirmation\": \"demo123\"}"}}},
+        {"name": "Login", "request": {"method": "POST", "url": "{{baseUrl}}/auth/login", "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"email\": \"admin@demo.com\", \"password\": \"demo123\"}"}}},
+        {"name": "Get Me", "request": {"method": "GET", "url": "{{baseUrl}}/auth/me", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Accept", "value": "application/json"}]}},
+        {"name": "Logout", "request": {"method": "POST", "url": "{{baseUrl}}/auth/logout", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}]}}
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {"name": "List Projects", "request": {"method": "GET", "url": "{{baseUrl}}/projects", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Accept", "value": "application/json"}]}},
+        {"name": "Create Project", "request": {"method": "POST", "url": "{{baseUrl}}/projects", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}, {"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\": \"Website Redesign\", \"description\": \"Full marketing site redesign\", \"status\": \"active\"}"}}},
+        {"name": "Get Project", "request": {"method": "GET", "url": "{{baseUrl}}/projects/:id", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Accept", "value": "application/json"}]}},
+        {"name": "Update Project", "request": {"method": "PUT", "url": "{{baseUrl}}/projects/:id", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}, {"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\": \"Updated Project\", \"status\": \"completed\"}"}}},
+        {"name": "Delete Project", "request": {"method": "DELETE", "url": "{{baseUrl}}/projects/:id", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}]}}
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {"name": "List Users", "request": {"method": "GET", "url": "{{baseUrl}}/users", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Accept", "value": "application/json"}]}}
+      ]
+    },
+    {
+      "name": "API Keys",
+      "item": [
+        {"name": "List Keys", "request": {"method": "GET", "url": "{{baseUrl}}/api-keys", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Accept", "value": "application/json"}]}},
+        {"name": "Create Key", "request": {"method": "POST", "url": "{{baseUrl}}/api-keys", "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}, {"key": "Accept", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\": \"CI Key\", \"permissions\": [\"read\", \"write\"]}"}}}
+      ]
+    }
+  ]
+}
